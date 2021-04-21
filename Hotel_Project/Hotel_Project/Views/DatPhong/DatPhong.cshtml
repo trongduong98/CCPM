@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Đặt Phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using QuanLyKhachSan.Models.Entities
+@using QuanLyKhachSan.Models.ViewModels
+@model Phong
+
+<h3>Đặt Phòng</h3>
+<div class="container">
+    <img src=@ViewBag.DuongDanAnh alt="Image" />
+    <br />
+    <div class="phong">
+        <label>Loại Phòng: @ViewBag.TenLoai</label><br />
+        <label>Tên Phòng: @Model.TenPhong</label><br />
+        <label>Diện Tích: @Model.DienTich m&sup2;</label><br />
+        <label>Giá Thuê: @Model.GiaThue.000 đ/ngày</label><br />
+    </div>
+    <form method="post">
+        <div class="form-group">
+            <label>Bạn Ở Từ Hôm Nào?&nbsp;</label>
+            <input class="form-control ngay-den" type="date" id="NgayDen" name="NgayDen" />
+            <label>&emsp;Bạn Ở Mấy Hôm?&nbsp;</label>
+            <input class="form-control so-ngay" type="number" min="1" max="30" value="1" id="SoNgay" name="SoNgay" />
+            <label>&nbsp;Ngày</label>
+            <script>
+                var homnay = new Date().toISOString().substring(0, 10);
+                document.getElementById('NgayDen').value = homnay;
+                document.getElementById('NgayDen').min = homnay;
+            </script>
+            <br /><br />
+            <label>Bạn Muốn Đặt Những Dịch Vụ Nào?</label>
+            <br />
+            @foreach (DichVu dv in (List<DichVu>)ViewBag.DSDichVu)
+            {
+                <label>@dv.TenDichVu: @dv.GiaDichVu.000 đ &nbsp;</label>
+                <input type="checkbox" name="@dv.MaDichVu" />
+                <br />
+            }
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Đặt Phòng" />
+        </div>
+    </form>
+    @if (ViewBag.Success == -1)
+    {
+        <p class="canh-bao">Nhập sai thông tin! Số ngày phải >= 1!</p>
+    }
+    else if (ViewBag.Success == 1)
+    {
+        <p class="canh-bao">Phòng đã có người đặt trong khoảng thời gian đó!</p>
+        <h3>Gợi Ý Các Phòng Có Thể Đặt Tại Lúc Đó:</h3>
+        foreach (PhongView pv in (List<PhongView>)ViewBag.ListDatDuoc)
+        {
+            <div class="phong">
+                <img class="img-rounded img-phong" src=@pv.DuongDanAnh alt="Image" width="250" height="149" />
+                <label>Loại Phòng: @pv.TenLoai</label><br />
+                <label>Tên Phòng: @pv.TenPhong</label><br />
+                <label>Diện Tích: @pv.DienTich m&sup2;</label><br />
+                <span class="gia-thue">@pv.GiaThue.000 đ/ngày</span><br />
+                <input type="button" class="btn-dat-phong" onclick="location.href = '/DatPhong/DatPhong/@pv.MaPhong'" value="ĐẶT PHÒNG" />
+            </div>
+        }
+    }
+</div>
