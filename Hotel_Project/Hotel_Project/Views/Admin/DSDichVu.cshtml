@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "DS Dịch Vụ";
+    Layout = "~/Views/SharedAdmin/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model List<DichVu>
+
+<script>
+    var element = document.getElementById("collapse4");
+    element.classList.add("in");
+</script>
+
+<h2>Danh Sách Dịch Vụ</h2>
+<div class="bang-danh-sach">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã Dịch Vụ</th>
+                <th>Tên Dịch Vụ</th>
+                <th>Giá Dịch Vụ</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 0;
+                foreach (DichVu dv in Model)
+                {
+                    stt++;
+                    <tr>
+                        <td>@stt</td>
+                        <td>@dv.MaDichVu</td>
+                        <td>@dv.TenDichVu</td>
+                        <td>@dv.GiaDichVu</td>
+                        <td><a href="/Admin/SuaDichVu/@dv.MaDichVu">Sửa</a>&nbsp;|&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" onclick="myFunction('/Admin/XoaDichVu/@dv.MaDichVu')">Xóa</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@if (ViewBag.SoTrang > 1)
+{
+    <div class="trang">
+        <ul class="pagination">
+            <li><a href="/Admin/DSDichVu/1">«</a></li>
+            @for (int i = 1; i <= ViewBag.SoTrang; i++)
+            {
+                <li id="li-@i"><a href="/Admin/DSDichVu/@i">@i</a></li>
+            }
+            <li><a href="/Admin/DSDichVu/@ViewBag.SoTrang">»</a></li>
+        </ul>
+    </div>
+
+    <script>
+        var trang = document.getElementById('li-@ViewBag.Trang');
+        trang.classList.add('active');
+    </script>
+}
+
+@Html.Partial("~/Views/SharedAdmin/_HopThoaiXacNhan.cshtml")

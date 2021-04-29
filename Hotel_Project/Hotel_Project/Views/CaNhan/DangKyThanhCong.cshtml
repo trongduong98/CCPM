@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Đăng Ký Thành Công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model TaiKhoan
+
+<h3>Đăng Ký Thành Công</h3>
+<br />
+<div class="container dang-nhap-form">
+    <table class="bang-dang-ky-thanh-cong">
+        <colgroup>
+            <col style="width: 50%" />
+            <col style="width: 50%" />
+        </colgroup>
+        <tbody>
+            <tr><th>Tài Khoản:</th><th><span style="color: #8A2BE2">@Model.TenTaiKhoan</span></th></tr>
+            <tr><th>Mật Khẩu:</th><th><span style="color: #4682B4">@Model.MatKhau</span></th></tr>
+            <tr><th>Họ Tên:</th><th><span style="color: #D2691E">@Model.HoTen</span></th></tr>
+            <tr><th>Số Điện Thoại:</th><th><span style="color: #008000">@Model.SoDienThoai</span></th></tr>
+            <tr><th>Email:</th><th><span style="color: #FF4500">@Model.Email</span></th></tr>
+        </tbody>
+    </table>
+</div>
+<br />
+<h4><a href="/CaNhan/DangNhap">Quay Lại Đăng Nhập</a></h4>

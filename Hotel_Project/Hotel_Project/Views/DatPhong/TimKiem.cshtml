@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Tìm Kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using QuanLyKhachSan.Models.ViewModels;
+@model List<PhongView>
+
+
+@if (Model.Count == 0)
+{
+    <h3>Không Có Phòng Như Vậy!</h3>
+}
+else
+{
+    <h3>Danh Sách Phòng Theo Ý Bạn</h3>
+    <div class="container">
+        @foreach (PhongView pv in @Model)
+        {
+            <div class="phong">
+                <img class="img-rounded img-phong" src=@pv.DuongDanAnh alt="Image" width="250" height="149" />
+                <label>Loại Phòng: @pv.TenLoai</label><br />
+                <label>Tên Phòng: @pv.TenPhong</label><br />
+                <label>Diện Tích: @pv.DienTich m&sup2;</label><br />
+                <span class="gia-thue">@pv.GiaThue.000 đ/ngày</span><br />
+                <input type="button" class="btn-dat-phong" onclick="location.href = '/DatPhong/DatPhong/@pv.MaPhong'" value="ĐẶT PHÒNG" />
+            </div>
+        }
+    </div>
+}

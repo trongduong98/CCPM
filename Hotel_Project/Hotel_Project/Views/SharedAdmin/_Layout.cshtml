@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Quản Lý Khách Sạn</title>
+    <link rel="Stylesheet" href="/Content/css/bootstrap.min.css" />
+    <link rel="Stylesheet" href="/Content/css/style.css" />
+</head>
+<body>
+    <div class="wrap-admin">
+        <nav class="navbar navbar-light" style="background-color: #edc9ff; ">
+            <div class="navbar-header right">
+                <label class="navbar-brand">Chào @User.Identity.Name</label>&nbsp;
+                <a class="navbar-brand" href="/Admin/DangXuat">Đăng Xuất</a>
+            </div>
+        </nav>
+        @Html.Partial("~/Views/SharedAdmin/_MenuTraiAdmin.cshtml")
+        <div class="body-admin">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

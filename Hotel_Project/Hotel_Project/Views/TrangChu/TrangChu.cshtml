@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities;
+@model List<LoaiPhong>
+
+<h3>Đặt Phòng Khách Sạn</h3>
+<div class="container">
+    @foreach (LoaiPhong lp in @Model)
+    {
+        <div class="loai-phong">
+            <a href="/DatPhong/LoaiPhong/@lp.MaLoai"><img class="img-rounded img-effect" src=@lp.DuongDanAnh alt=@lp.TenLoai width="270" height="160" /></a>
+            <div class="ten-loai">@lp.TenLoai</div>
+        </div>
+    }
+</div>
+<h3>Tìm Kiếm Phòng</h3>
+<div class="container">
+    <form action="/DatPhong/TimKiem" method="get">
+        <label>Tìm Kiếm Theo:</label>
+        <select class="form-control loai-tim-kiem" id="LoaiTimKiem" name="LoaiTimKiem" onchange="changeLabel()">
+            <option>Giá Phòng</option>
+            <option>Diện Tích</option>
+        </select>
+        <select class="form-control muc-tim-kiem" name="MucTimKiem">
+            <option><=</option>
+            <option>>=</option>
+        </select>
+        <label>Giá Trị:</label>
+        <input class="form-control gia-tri-tim-kiem" type="number" name="GiaTri" min="0" placeholder="Nhập Giá Trị" />
+        <label id="don-vi"></label>
+        <script>
+            function changeLabel() {
+                var loaitk = document.getElementById('LoaiTimKiem');
+                if (loaitk.value == 'Giá Phòng') {
+                    document.getElementById('don-vi').innerText = 'nghìn đồng';
+                } else {
+                    document.getElementById('don-vi').innerText = 'm\xB2';
+                }
+            }
+            changeLabel();
+        </script>
+        <span>&nbsp;</span>
+        <input class="btn btn-success" type="submit" value="Tìm Kiếm" />
+    </form>
+</div>

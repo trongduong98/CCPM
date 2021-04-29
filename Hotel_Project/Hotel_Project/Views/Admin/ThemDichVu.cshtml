@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Thêm Dịch Vụ";
+    Layout = "~/Views/SharedAdmin/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model DichVu
+
+<script>
+    var element = document.getElementById("collapse4");
+    element.classList.add("in");
+</script>
+
+<h2 style="text-align:center">Thêm Dịch Vụ</h2>
+
+<div class="container admin-sua-thong-tin">
+    <form action="" method="post">
+        <div class="form-group">
+            <label>Mã Dịch Vụ:</label>
+            <input class="form-control dang-nhap-text" type="text" name="MaDichVu" placeholder="Nhập Mã Dịch Vụ" value="@Model.MaDichVu" />
+            <span class="canh-bao">@Html.ValidationMessageFor(m => m.MaDichVu)</span>
+        </div>
+        <div class="form-group">
+            <label>Tên Dịch Vụ:</label>
+            <input class="form-control dang-nhap-text" type="text" name="TenDichVu" placeholder="Nhập Tên Dịch Vụ" value="@Model.TenDichVu" />
+            <span class="canh-bao">@Html.ValidationMessageFor(m => m.TenDichVu)</span>
+        </div>
+        <div class="form-group">
+            <label>Giá Dịch Vụ:</label>
+            <input class="form-control dang-nhap-text" type="number" name="GiaDichVu" placeholder="Nhập Giá Dịch Vụ" value="@Model.GiaDichVu" />
+            <span class="canh-bao">@Html.ValidationMessageFor(m => m.GiaDichVu)</span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="Thêm Mới" />
+        </div>
+    </form>
+</div>
+

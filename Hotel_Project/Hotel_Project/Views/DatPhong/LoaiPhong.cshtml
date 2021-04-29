@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Loại Phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model List<Phong>
+
+@if (ViewBag.Success == 1)
+{
+    <h3>@ViewBag.TenLoai</h3>
+    <div class="container">
+        <img style="padding-bottom: 16px" src=@ViewBag.DuongDanAnh alt="Image" />
+        <label id="thong-tin" style="font-size:medium">@ViewBag.GhiChu</label>
+        <br />
+        <h3>Danh Sách Phòng</h3>
+        @foreach (Phong p in Model)
+        {
+            <div class="phong">
+                <img class="img-rounded img-phong" src=@ViewBag.DuongDanAnh alt="Image" width="250" height="149" />
+                <label>Tên Phòng: @p.TenPhong</label><br />
+                <label>Diện Tích: @p.DienTich m&sup2;</label><br />
+                <span class="gia-thue">@p.GiaThue.000 đ/ngày</span><br />
+                <input type="button" class="btn-dat-phong" onclick="location.href = '/DatPhong/DatPhong/@p.MaPhong'" value="ĐẶT PHÒNG" />
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3>Loại Phòng Ko Tồn Tại!</h3>
+}

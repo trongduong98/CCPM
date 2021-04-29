@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "DS Tài Khoản";
+    Layout = "~/Views/SharedAdmin/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model List<TaiKhoan>
+
+<script>
+    var element = document.getElementById("collapse1");
+    element.classList.add("in");
+</script>
+
+<h2>Danh Sách Tài Khoản</h2>
+<div class="bang-danh-sach">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tài Khoản</th>
+                <th>Mật Khẩu</th>
+                <th>Họ Tên</th>
+                <th>Số Điện Thoại</th>
+                <th>Email</th>
+                <th>Là Admin</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = ViewBag.STT;
+                foreach (TaiKhoan tk in Model)
+                {
+                    string laAdmin = tk.LaAdmin ? "Có" : "Không";
+                    stt++;
+                    <tr>
+                        <td>@stt</td>
+                        <td>@tk.TenTaiKhoan</td>
+                        <td>@tk.MatKhau</td>
+                        <td>@tk.HoTen</td>
+                        <td>@tk.SoDienThoai</td>
+                        <td>@tk.Email</td>
+                        <td>@laAdmin</td>
+                        <td><a href="/Admin/SuaTaiKhoan/@tk.TenTaiKhoan">Sửa</a>&nbsp;|&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" onclick="myFunction('/Admin/XoaTaiKhoan/@tk.TenTaiKhoan')">Xóa</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@if (ViewBag.SoTrang > 1)
+{
+    <div class="trang">
+        <ul class="pagination">
+            <li><a href="/Admin/DSPhong/1">«</a></li>
+            @for (int i = 1; i <= ViewBag.SoTrang; i++)
+            {
+                <li id="li-@i"><a href="/Admin/DSTaiKhoan/@i">@i</a></li>
+            }
+            <li><a href="/Admin/DSPhong/@ViewBag.SoTrang">»</a></li>
+        </ul>
+    </div>
+
+    <script>
+        var trang = document.getElementById('li-@ViewBag.Trang');
+        trang.classList.add('active');
+    </script>
+}
+@Html.Partial("~/Views/SharedAdmin/_HopThoaiXacNhan.cshtml")

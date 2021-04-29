@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Trang Cá Nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.DiaChi = 2;
+}
+
+@using QuanLyKhachSan.Models.ViewModels
+@model TaiKhoanDangKyView
+
+<h3>Trang Cá Nhân</h3>
+
+@Html.Partial("_MenuTraiCaNhan")
+
+<div class="container dang-nhap-form">
+    <form action="" method="post">
+        <div class="form-group">
+            <label>Tài Khoản:</label>
+            <input class="form-control dang-nhap-text" type="text" name="TenTaiKhoan" value="@Model.TenTaiKhoan" readonly />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.TenTaiKhoan)</span>
+        </div>
+        <div class="form-group">
+            <label>Mật Khẩu Mới:</label>
+            <input class="form-control dang-nhap-text" type="password" name="MatKhau" value="@Model.MatKhau" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.MatKhau)</span>
+        </div>
+        <div class="form-group">
+            <label>Xác Nhận Mật Khẩu:</label>
+            <input class="form-control dang-nhap-text" type="password" name="XacNhanMatKhau" value="@Model.XacNhanMatKhau" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.XacNhanMatKhau)</span>
+        </div>
+        <div class="form-group">
+            <label>Họ Tên:</label>
+            <input class="form-control dang-nhap-text" type="text" name="HoTen" value="@Model.HoTen" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.HoTen)</span>
+        </div>
+        <div class="form-group">
+            <label>SĐT:</label>
+            <input class="form-control dang-nhap-text" type="tel" name="SoDienThoai" value="@Model.SoDienThoai" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.SoDienThoai)</span>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input class="form-control dang-nhap-text" type="email" name="Email" value="@Model.Email" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.Email)</span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="Cập Nhật Thông Tin" />
+        </div>
+    </form>
+    @if (ViewBag.Success == 1)
+    {
+        <p class="thanh-cong">Lưu Thông Tin Thành Công!</p>
+    }
+</div>

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Đặt Phòng Thành Công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using QuanLyKhachSan.Models.Entities
+
+<h3>Bạn Đã Đặt Phòng Thành Công!</h3>
+<div class="container dat-phong-thanh-cong">
+    <p>Tài Khoản <span style="color: blue;">@(((TaiKhoan)Session["TaiKhoan"]).TenTaiKhoan)</span> đã đặt thành công!</p>
+    <table class="bang-dang-ky-thanh-cong bang-dat-phong-thanh-cong">
+        <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 60%" />
+        </colgroup>
+        <tbody>
+            <tr><th>Phòng:</th><th><span style="color: #8A2BE2">@ViewBag.TenPhong</span></th></tr>
+            <tr><th>Diện Tích:</th><th><span style="color: #4682B4">@ViewBag.DienTich m&sup2;</span></th></tr>
+            <tr><th>Đơn Giá:</th><th><span style="color: #D2691E">@ViewBag.GiaThue.000 đ/ngày</span></th></tr>
+            <tr><th>Ngày Đặt:</th><th><span style="color: #008000">@ViewBag.NgayDat</span></th></tr>
+            <tr><th>Từ Ngày:</th><th><span style="color: #FF4500">@ViewBag.NgayDen</span></th></tr>
+            <tr><th>Đến Ngày:</th><th><span style="color: #669900">@ViewBag.NgayTra</span></th></tr>
+            <tr><th>Dịch Vụ:</th><th><span style="color: #009999">@ViewBag.DichVu</span></th></tr>
+            <tr><th>Thành Tiền:</th><th><span style="color: #e6004c">@ViewBag.ThanhTien.000 đ</span></th></tr>
+        </tbody>
+    </table>
+    <p><a href="/"><span style="color: #0000CC;">Quay Về Trang Chủ</span></a></p>
+</div>

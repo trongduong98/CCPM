@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "DS Loại Phòng";
+    Layout = "~/Views/SharedAdmin/_Layout.cshtml";
+}
+
+@using QuanLyKhachSan.Models.Entities
+@model List<LoaiPhong>
+
+<script>
+    var element = document.getElementById("collapse2");
+    element.classList.add("in");
+</script>
+
+<h2>Danh Sách Loại Phòng</h2>
+<table class="table table-hover table-striped">
+    <colgroup>
+        <col style="width: 6%">
+        <col style="width: 10%">
+        <col style="width: 10%">
+        <col style="width: 44%">
+        <col style="width: 22%">
+        <col style="width: 8%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã Loại</th>
+            <th>Tên Loại</th>
+            <th>Ghi Chú</th>
+            <th>Đường Dẫn</th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int stt = 0;
+            foreach (LoaiPhong lp in Model)
+            {
+                stt++;
+                <tr>
+                    <td>@stt</td>
+                    <td>@lp.MaLoai</td>
+                    <td>@lp.TenLoai</td>
+                    <td>@lp.GhiChu</td>
+                    <td>@lp.DuongDanAnh</td>
+                    <td><a href="/Admin/SuaLoaiPhong/@lp.MaLoai">Sửa</a>&nbsp;|&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" onclick="myFunction('/Admin/XoaLoaiPhong/@lp.MaLoai')">Xóa</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@Html.Partial("~/Views/SharedAdmin/_HopThoaiXacNhan.cshtml")
